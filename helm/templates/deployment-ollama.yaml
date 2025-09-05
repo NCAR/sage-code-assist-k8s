@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-ollama
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: deployment-ollama
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deployment-ollama
+  template:
+    metadata:
+      labels:
+        app: deployment-ollama
+    spec:
+      volumes:
+      - name: ollama-fs
+        persistentVolumeClaim:
+          claimName: ollama-fs
+      runtimeClassName: nvidia
+      containers:
+      - name: ollama
+        image: ollama/ollama:0.6.8
+        env:
+        - name: TZ
+          value: "America/Denver"
+        - name: OLLAMA_DEBUG
+          value: "1"
+        resources:
+          limits:
+            memory: 4G
+            cpu: 2
+            nvidia.com/gpu: 1
+        ports:
+        - containerPort: 11434
+        volumeMounts:
+        - mountPath: /root/.ollama
+          name: ollama-fs
