@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-map-frontend
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: config-map-frontend
+data:
+  keys.map: |
+    phony-key1 pass;
+    phony-key2 pass;
+    default    unauthenticated;
+  default.conf: |
+    map $$http_x_api_key $$valid_key {
+      include keys.map;
+    }
+    server {
+      listen 80;
+      server_name localhost;
+      location / {
+        if ($$valid_key = unauthenticated) {
+          return 401;
+        }
+        proxy_pass http://service-ollama:11434;
+        proxy_set_header Host $$host;
+        proxy_set_header X-Real-IP $$remote_addr;
+      }
+    }

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-frontend
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: deployment-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deployment-frontend
+  template:
+    metadata:
+      labels:
+        app: deployment-frontend
+      # Kubernetes does not recreate a deployment when that deployment's config map file changes.
+      # Updating this annotation (after editing the config map) is intended to be used to trigger
+      # kubernetes into recreating this deployment so that the new content of the config map is used.
+      # date +%Y-%m-%d_%H:%M:%S
+      annotations:
+        configmap-timestamp: 2025-09-09_13:10:21
+    spec:
+      volumes:
+        - name: volume-frontend-conf
+          configMap:
+            name: config-map-frontend
+            items:
+              - key: default.conf
+                path: default.conf
+              - key: keys.map
+                path: keys.map
+      containers:
+      - name: nginx
+        image: nginx:1.25.4-alpine
+        resources:
+          limits:
+            memory: 1G
+            cpu: 2
+        ports:
+          - containerPort: 80
+        volumeMounts:
+          - name: volume-frontend-conf
+            mountPath: /etc/nginx/conf.d
+            readOnly: true
