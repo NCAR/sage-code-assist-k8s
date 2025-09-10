@@ -1,1 +1,1 @@
-# sage-ollama-vibe-coding-k8s
+# sage-code-assist-k8s
