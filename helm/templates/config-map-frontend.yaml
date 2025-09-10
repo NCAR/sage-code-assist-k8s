@@ -7,11 +7,11 @@ metadata:
     app: config-map-frontend
 data:
   keys.map: |
-    phony-key1 pass;
-    phony-key2 pass;
+    "Bearer phony-key1" pass;
+    "Bearer phony-key2" pass;
     default    unauthenticated;
   default.conf: |
-    map $http_x_api_key $valid_key {
+    map $http_authorization $valid_key {
       include /etc/nginx/conf.d/keys.map;
     }
     server {
