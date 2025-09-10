@@ -19,10 +19,10 @@ spec:
   ingressClassName: nginx-internal
   tls:
     - hosts:
-        - sage-vibe.k8s.ucar.edu
+        - sage.code.assist.k8s.ucar.edu
       secretName: incommon-cert-sage-vibe
   rules:
-    - host: sage-vibe.k8s.ucar.edu
+    - host: sage.code.assist.k8s.ucar.edu
       http:
         paths:
           - path: /
