@@ -1,0 +1,66 @@
+name: LocalAssistantOllamaCustom
+version: 0.0.1
+schema: v1
+models:
+  - name: codellama:7b
+    title: codellama:7b
+    provider: openai
+    model: codellama:7b
+    apiBase: https://sage.code.assist.k8s.ucar.edu/v1
+    apiKey: phony-key1
+    roles:
+      - edit
+      - apply
+  - name: nomic-embed-text:v1.5
+    title: nomic-embed-text:v1.5
+    provider: openai
+    model: nomic-embed-text:v1.5
+    apiBase: https://sage.code.assist.k8s.ucar.edu/v1
+    apiKey: phony-key1
+    roles:
+      - embed
+  - name: mistral:7b
+    title: mistral:7b
+    provider: openai
+    model: mistral:7b
+    apiBase: https://sage.code.assist.k8s.ucar.edu/v1
+    apiKey: phony-key1
+    roles:
+      - edit
+      - apply
+  - name: deepseek-coder:6.7b
+    title: deepseek-coder:6.7b
+    provider: openai
+    model: deepseek-coder:6.7b
+    apiBase: https://sage.code.assist.k8s.ucar.edu/v1
+    apiKey: phony-key1
+    roles:
+      - edit
+      - apply
+  - name: llama3.2:3b
+    title: llama3.2:3b
+    provider: openai
+    model: llama3.2:3b
+    apiBase: https://sage.code.assist.k8s.ucar.edu/v1
+    apiKey: phony-key1
+    roles:
+      - chat
+  - name: qwen2.5-coder:1.5b
+    title: qwen2.5-coder:1.5b
+    provider: openai
+    model: qwen2.5-coder:1.5b
+    apiBase: https://sage.code.assist.k8s.ucar.edu/v1
+    apiKey: phony-key1
+    requestOptions:
+      extraBodyProperties:
+        think: false # turning off the thinking
+    roles:
+      - autocomplete
+  - name: dengcao/Qwen3-Reranker-8B:Q4_K_M
+    title: dengcao/Qwen3-Reranker-8B:Q4_K_M
+    provider: openai
+    model: dengcao/Qwen3-Reranker-8B:Q4_K_M
+    apiBase: https://sage.code.assist.k8s.ucar.edu/v1
+    apiKey: phony-key1
+    roles:
+      - rerank

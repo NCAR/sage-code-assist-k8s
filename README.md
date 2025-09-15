@@ -54,7 +54,7 @@ Install the Intellij plugin [Continue](https://www.continue.dev/). This plugin p
 
 ### Local Assistant configuration
 
-To use the CIRRUS Cloud installation of Ollam, configure what is called a "Local Assistant".
+To use the CIRRUS Cloud installation of Ollama, configure what is called a "Local Assistant".
 
 Create the Local Assistant configuration file:
 ```
