@@ -89,3 +89,11 @@ Replace the empty roles array with the roles you'd like the model to perform. Th
 ### Example Local Assistant configuration file
 
 See the file [LocalAssistantCirrus.yaml](LocalAssistantCirrus.yaml) as a working example.
+
+## Nvidia GPUs
+
+Per Kevin Hrpcek, we have two types of Nvidia GPU:
+
+[A2](https://www.nvidia.com/en-us/data-center/products/a2/) 16GB
+
+[A10](https://www.nvidia.com/en-us/data-center/products/a10-gpu/) 24GB
