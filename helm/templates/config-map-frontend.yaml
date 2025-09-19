@@ -6,13 +6,10 @@ metadata:
   labels:
     app: config-map-frontend
 data:
-  keys.map: |
-    "Bearer phony-key1" pass;
-    "Bearer phony-key2" pass;
-    default    unauthenticated;
   default.conf: |
     map $http_authorization $valid_key {
-      include /etc/nginx/conf.d/keys.map;
+      include /etc/config/secret/*.conf;
+      default    unauthenticated;
     }
     server {
       listen 80;

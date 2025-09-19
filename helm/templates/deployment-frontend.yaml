@@ -28,8 +28,9 @@ spec:
             items:
               - key: default.conf
                 path: default.conf
-              - key: keys.map
-                path: keys.map
+        - name: volume-frontend-secret
+          secret:
+            secretName: secret-apikey
       containers:
       - name: nginx
         image: nginx:1.25.4-alpine
@@ -42,4 +43,7 @@ spec:
         volumeMounts:
           - name: volume-frontend-conf
             mountPath: /etc/nginx/conf.d
+            readOnly: true
+          - name: volume-frontend-secret
+            mountPath: /etc/config/secret
             readOnly: true
