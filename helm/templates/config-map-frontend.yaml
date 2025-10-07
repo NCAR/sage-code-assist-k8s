@@ -9,15 +9,23 @@ data:
   default.conf: |
     map $http_authorization $valid_key {
       include /etc/config/secret/*.conf;
-      default    unauthenticated;
+      default unauthenticated;
     }
     server {
-      listen 80;
-      server_name localhost;
+      listen 80 default_server;
       location / {
         if ($valid_key = unauthenticated) {
           return 401;
         }
+        proxy_pass http://service-ollama:11434;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+      }
+    }
+    server {
+      listen 80;
+      server_name sage.code.assist.open.k8s.ucar.edu;
+      location / {
         proxy_pass http://service-ollama:11434;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;

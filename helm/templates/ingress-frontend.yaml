@@ -20,9 +20,20 @@ spec:
   tls:
     - hosts:
         - sage.code.assist.k8s.ucar.edu
+        - sage.code.assist.open.k8s.ucar.edu
       secretName: incommon-cert-sage-vibe
   rules:
     - host: sage.code.assist.k8s.ucar.edu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: service-frontend
+                port:
+                  number: 80
+    - host: sage.code.assist.open.k8s.ucar.edu
       http:
         paths:
           - path: /
