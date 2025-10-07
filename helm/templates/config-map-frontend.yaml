@@ -14,7 +14,7 @@ data:
     server {
       listen 80 default_server;
       location / {
-        if ($valid_key = unauthenticated) {
+        if ($valid_key != pass) {
           return 401;
         }
         proxy_pass http://service-ollama:11434;
