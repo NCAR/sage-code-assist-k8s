@@ -19,7 +19,7 @@ spec:
       # kubernetes into recreating this deployment so that the new content of the config map is used.
       # date +%Y-%m-%d_%H:%M:%S
       annotations:
-        configmap-timestamp: 2025-09-09_13:10:21
+        configmap-timestamp: 2025-10-07_13:18:00
     spec:
       volumes:
         - name: volume-frontend-conf
