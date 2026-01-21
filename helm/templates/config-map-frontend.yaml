@@ -24,14 +24,3 @@ data:
         proxy_read_timeout 300s;
       }
     }
-    server {
-      listen 80;
-      server_name sage.code.assist.open.k8s.ucar.edu;
-      location / {
-        proxy_pass http://service-ollama:11434;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        # Needs to be set to the same value as in the ingress-webapp.yaml file.
-        proxy_read_timeout 300s;
-      }
-    }
