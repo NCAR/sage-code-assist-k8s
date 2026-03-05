@@ -33,7 +33,7 @@ spec:
             secretName: secret-apikey
       containers:
       - name: nginx
-        image: nginx:1.25.4-alpine
+        image: docker.io/library/nginx:1.25.4-alpine
         resources:
           limits:
             memory: 1G
