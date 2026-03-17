@@ -16,7 +16,7 @@ curl --header "Authorization: Bearer phony-key1" https://sage.code.assist.k8s.uc
 }'
 ```
 
-### Show all locally installed models:
+### Show all installed models:
 ```
 curl --header "Authorization: Bearer phony-key1" https://sage.code.assist.k8s.ucar.edu/api/tags
 ```
