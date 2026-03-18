@@ -22,7 +22,7 @@ spec:
       runtimeClassName: nvidia
       containers:
       - name: ollama
-        image: docker.io/ollama/ollama:0.14.2
+        image: docker.io/ollama/ollama:0.16.3
         env:
         - name: TZ
           value: "America/Denver"
