@@ -5,6 +5,9 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     app: service-ollama
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: "sage.code.assist.ollama.k8s.ucar.edu"
+    external-dns.alpha.kubernetes.io/ttl: "300"
 spec:
   selector:
     app: deployment-ollama
