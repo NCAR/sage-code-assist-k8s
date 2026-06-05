@@ -7,14 +7,12 @@ metadata:
     app: ingress-frontend
   annotations:
     cert-manager.io/cluster-issuer: "incommon"
-    # Setting the proxy read timeout because it can take several minutes
-    # for both the Github Init (a git clone) and Initalize Embeddings to
-    # complete successfully.
-    # 300 / 60 = 5 minutes
-    #
+    # Setting the proxy read and send timeouts conservatively high and buffering off for streaming (see config-map-frontend.yaml)
     # Reference for nginx ingress annotations:
     # https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-annotations/#summary-of-annotations
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-buffering: "off"
 spec:
   ingressClassName: nginx-internal
   tls:
