@@ -12,12 +12,13 @@ metadata:
     # https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-annotations/#summary-of-annotations
     nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
-    nginx.ingress.kubernetes.io/proxy-buffering: "off"
+    # nginx.ingress.kubernetes.io/proxy-buffering: "off"
 spec:
   ingressClassName: nginx-internal
   tls:
     - hosts:
         - sage.code.assist.k8s.ucar.edu
+        - sage.code.assist.open.k8s.ucar.edu
       secretName: incommon-cert-sage-vibe
   rules:
     - host: sage.code.assist.k8s.ucar.edu
@@ -30,3 +31,13 @@ spec:
                 name: service-frontend
                 port:
                   number: 80
+    - host: sage.code.assist.open.k8s.ucar.edu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: service-ollama
+                port:
+                  number: 11434
